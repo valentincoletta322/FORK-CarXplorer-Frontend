@@ -1,0 +1,24 @@
+<div id="contenedor">
+    <div id="central">
+        <div id="login">
+            <div class="titulo">
+                LOGIN
+            </div>
+            <div class="subtitulo">
+                AutoExplorer
+            </div>
+            <div class="line"><hr class="line"></div>
+            <form id="loginform" (ngSubmit)="loginUser()">
+                <input type="text" [(ngModel)]="username" name="username" placeholder="Usuario" required>
+                
+                <input type="password" [(ngModel)]="password" placeholder="Contraseña" name="password" required>
+                
+                <button type="submit" title="Ingresar" name="Ingresar">Iniciar sesión</button>
+            </form>
+            <p style="color:rgb(145, 11, 11)" >{{statusLogin}}</p>
+            <div class="pie-form">
+                <a routerLink="/register">¿No tienes cuenta? Registrate aquí</a>
+            </div>
+        </div>
+    </div>
+</div>

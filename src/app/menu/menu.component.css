@@ -1,0 +1,247 @@
+/* Estilos para los elementos del grid de publicaciones */
+.publicaciones-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* puede ser space around */
+}
+
+.publicacion-card {
+  cursor: pointer;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  margin: 10px;
+  background-color: rgb(255, 255, 255); 
+}
+
+.publicacion-card:hover{
+  transform: scale(1.1); /* Efecto de zoom al pasar el cursor sobre la imagen */
+  transition: transform 0.2s; /* Transición al volver al estado original */
+}
+
+.photo-container img {
+  width: 300px; /* Ancho fijo para el cuadro de imágenes */
+  height: 250px; /* Altura fija para el cuadro de imágenes */
+  overflow: hidden; /* Recortar el contenido que se desborde del cuadro */
+}
+
+.publicacion-card h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.titulos {
+  text-align: center;
+}
+
+.precio-grande {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.disponibilidad {
+  font-size: 0.9rem;
+  color: green; /* Puedes personalizar el color según tu preferencia */
+}
+
+.listingImg{
+    max-width: 100%;
+    height: auto;
+    max-width: 650px;
+    max-height: 350px;
+    object-fit: cover;
+}
+
+.Pausado {
+  color: rgb(255, 136, 0);
+}
+
+.content {
+  padding: 20px;
+}
+
+.truncate-text {
+  padding-left: 15px;
+  padding-right: 15px;
+  white-space: nowrap; /* Evita saltos de línea */
+  overflow: hidden; /* Oculta el exceso de texto */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos */
+  max-width: 100%; /* Limita el ancho para que no se desborde del contenedor */
+}
+
+.filters label {
+  margin-right: 5px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.filters input {
+  margin-right: 5px;
+  background-color: #fff;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters select {
+  margin-right: 5px;
+  background-color: #fff;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filterzone {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.filterzone button {
+  background-color: #007bff; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filterzone button:hover {
+  transition: ease-in-out 0.2s;
+  background-color: #0056b3; /* Color de fondo al pasar el mouse por encima */
+}
+
+#titleFilter {
+  border-color: #406595db;
+  text-align: center;
+  border-width: 3px;
+  border-style: solid;
+  width: 700px;
+  height: 30px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #20456c;
+}
+
+input::placeholder {
+  color: #323c83;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.searchIcon{
+  scale: 1.5; 
+  margin-top:8px; 
+  margin-left: 10px;
+  padding: 1px;
+  color: #406595db;
+  cursor: pointer;
+  transition: ease-in-out 0.1s; 
+}
+
+.filtercheck {
+  margin-bottom: 7px;
+}
+
+* {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.searchIcon:hover{
+  transition: ease-in-out 0.1s;
+  color: #0056b3;
+  scale: 1.95;
+}
+
+.pageElement {
+  justify-content: center;
+  color: #2a4d72;
+  display: flex;
+  font-size: 1.3rem;
+  margin: 7px;
+  width: 22px;
+  padding: 8px;
+  border-radius: 15%;
+  border-style: solid;
+  border-color: #4e5c6edb;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 40px;
+  transition: ease-in-out 0.2s;
+}
+
+#selectedPage {
+  background-color: #4e5c6e29;
+  color: #2a4d72;
+  scale: 1.15;
+}
+
+.pageElement:hover{
+  transition: ease-in-out 0.2s;
+  background-color: #4e5c6e42;
+  color: #000000;
+  scale: 1.15;
+}
+
+#error {
+  margin-top: 200px;
+  color: #2a4d7276;
+  font-size: 50px;
+}
+
+
+
+@media (max-width: 768px) {
+  .publicacion-card {
+    flex: 0 1 calc(45% - 10px);
+  }
+}
+
+
+@media (max-width: 1000px) {
+
+  .filterzone {
+    margin-left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .filters label {
+    display: block;
+  }
+
+  .filters select{
+    margin-bottom: 5px;
+  }
+
+  #titleFilter {
+    width: 250px;
+    font-size: 15px;
+  }
+  #error {
+    justify-content: center;
+    margin-top: 100px;
+    color: rgb(19, 34, 48);
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1300px) {
+
+  #error {
+    justify-content: center;
+    margin-top: 100px;
+    color: rgb(19, 34, 48);
+    font-size: 15px;
+  }
+}

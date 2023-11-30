@@ -1,0 +1,19 @@
+<!-- Navbar normal -->
+<mat-toolbar color="primary">
+  <span style="cursor: pointer;" routerLink="/menu" >AutoExplorer.com</span>
+  <span style="margin-left: auto;"></span>
+  <a mat-button routerLink="/menu">
+    <mat-icon>home</mat-icon>
+    Home
+  </a>
+  <a mat-button routerLink="/upload">
+    <mat-icon>upload</mat-icon>
+    Subir
+  </a>
+  <a mat-button (click)="redirectProfile()">
+    <mat-icon>account_circle</mat-icon>
+    Perfil
+  </a>
+</mat-toolbar>
+<div style="height: 85px;"></div>
+

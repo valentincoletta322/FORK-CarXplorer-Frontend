@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+<div class="errorZone">
+  <div class="errorContent" *ngIf="statusEdit">
+    <mat-icon style="margin-left: 100%; cursor: pointer;" (click)="closeError()" >close</mat-icon>
+
+    <div style="display: flex;">
+      <div>
+        <mat-icon class="errorIcon">error</mat-icon>
+      </div>
+      <div style="margin-top: 2.5px;">
+        Error: {{statusEdit}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="profile-container">
+  <div class="profile-box">
+    <div class="profile-avatar">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <h2>Perfil de Usuario</h2>
+    <div class="profile-info">
+
+      <div class="profile-field">
+        <mat-icon>account_circle</mat-icon>
+        <div class="field-label"> Nombre de Usuario:</div>
+        <div class="field-value">{{ perfil.username }}</div>
+      </div>
+
+      <div class="profile-field">
+        <mat-icon>account_box</mat-icon>
+        <div class="field-label">Nombre Completo:</div>
+        <div class="field-value">{{ perfil.fullName }}</div>
+      </div>
+
+      <div *ngIf="!modoEdicion" class="profile-field">
+        <mat-icon>email</mat-icon>
+        <div class="field-label">Correo Electrónico:</div>
+        <div class="field-value">{{ perfil.email }}</div>
+      </div>
+
+      <div *ngIf="modoEdicion" class="profile-field">
+        <mat-icon>email</mat-icon>
+        <div class="field-label">Correo Electrónico:</div>
+        <input type="email" [(ngModel)]="mailEditable">
+
+      </div>
+
+      <div class="profile-field">
+        <mat-icon>location_on</mat-icon>
+        <div class="field-label"> Dirección:</div>
+        <div class="field-value">{{ perfil.address }}</div>
+      </div>
+
+      <div *ngIf="!modoEdicion" class="profile-field">
+        <mat-icon>phone</mat-icon>
+        <div class="field-label"> Teléfono:</div>
+        <div class="field-value">{{ perfil.phone }}</div>
+      </div>
+
+      <div *ngIf="modoEdicion" class="profile-field">
+        <mat-icon>phone</mat-icon>
+        <div class="field-label"> Teléfono:</div>
+        <input type="text" style="width: 193px;" [(ngModel)]="numeroEditable">
+      </div>
+    </div>
+  </div>
+  <div class="buttonContainer" *ngIf="esPropietario">
+
+      <button *ngIf="!modoEdicion" class="editButton" (click)="editarPerfil()">Editar perfil</button>
+      <button *ngIf="modoEdicion" class="editButton" (click)="editarPerfil()">Cancelar</button>
+
+      <button class="logOut" *ngIf="!modoEdicion" (click)="cerrarSesion()">Cerrar sesión</button>
+      <button class="confirm" *ngIf="modoEdicion"(click)="guardarCambios()">Confirmar</button>
+    
+  </div>
+</div>
+
+<div class="publicaciones-grid" *ngIf="!statusSearch">
+  <div class="publicacion-card" *ngFor="let publicacion of publicaciones.listings">
+    <div class="titulos">
+      <div class="photo-container" (click)="verDescripcion(publicacion)">
+        <img class="listingImg" src={{(publicaciones.URL_IMG)+(publicacion.listingPhoto)}} alt="Foto">
+      </div>
+        <h3 class="truncate-text">{{ publicacion.title }}</h3>
+    </div>
+    <div class="content" (click)="verDescripcion(publicacion)">
+      <p class="precio-grande"><strong>$</strong> {{ serviceFormatPrice(publicacion.price) }} {{ publicacion.currency }}</p>
+      <p [ngClass]="{'disponibilidad': true, 'Pausado': publicacion.state === 'Pausada'}" class="disponibilidad">{{ publicacion.state }}</p>
+      <p><strong></strong> {{ serviceTruncateText(publicacion.description, 29) }}</p>
+      <p>Publicado por <strong>{{ publicacion.author }}</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="errorZone" *ngIf="!statusSearch">
+  
+  <div style="margin-top: 15px; display: flex;">
+    <div class="pageElement" *ngIf="page > 1">
+      <mat-icon style="cursor: pointer;" (click)="cambiarPagina(page-1)">west</mat-icon>
+    </div>
+    <div style="cursor: pointer;" class="pageElement" *ngIf="page > 1" (click)="cambiarPagina(page-1)">
+        {{page-1}}
+    </div>
+    <div class="pageElement" id="selectedPage">
+      {{page}}
+    </div>
+    <div style="cursor: pointer;" class="pageElement" (click)="cambiarPagina(page+1)" *ngIf="!publicaciones.lastPage">
+      {{page+1}}
+    </div>
+    
+    <div class="pageElement" *ngIf="!publicaciones.lastPage">
+      <mat-icon style="cursor: pointer;" (click)="cambiarPagina(page+1)">east</mat-icon>
+    </div>
+
+  </div>
+</div>
+<div id="map" style="height: 400px;"></div>

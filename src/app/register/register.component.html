@@ -1,0 +1,44 @@
+<div id="contenedor">
+    <div id="central">
+        <div id="login">
+            <div class="titulo">
+                REGISTER
+            </div>
+            <div class="subtitulo">
+                AutoExplorer
+            </div>
+            <div class="line"><hr class="line"></div>
+            <form id="loginform" (ngSubmit)="registerUser()">
+                <input type="text" [(ngModel)]="email" name="email" placeholder="E-mail" required>                
+                
+                <input type="text" [(ngModel)]="username" name="username" placeholder="Usuario" required>
+                
+                <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Nombre completo" required>
+
+                <input type="password" [(ngModel)]="password" placeholder="Contraseña" name="password" required>
+                <label>
+                    Quiero ser vendedor    <input type="checkbox" [(ngModel)]="isSeller" name="isSeller">
+                </label>
+                <div *ngIf="isSeller">
+                    <input type="number" [(ngModel)]="phone" placeholder="Teléfono" name="phone" required>
+                    <div style="display: flex ;">
+                        <input type="text" style="margin-right: 10px;" [(ngModel)]="addrStreet" placeholder="Calle" name="street" required>
+                        <input type="text" [(ngModel)]="addrNumber" placeholder="Numero" name="number" required>
+                    </div>
+                    <select id="currency" name="currency" [(ngModel)]="addrCity" placeholder="Barrio">
+                        <option *ngFor="let neighborhood of neighborhoods" [value]="neighborhood">
+                            {{ neighborhood }}
+                        </option>
+                        <option value="" disabled selected hidden>Barrop</option>
+                      </select>
+                </div>
+                <button type="submit" title="Ingresar" name="Ingresar">Registrate</button>
+            </form>
+            
+            <p style="color:rgb(151, 15, 15)" >{{statusRegister}}</p>
+            <div class="pie-form">
+                <a routerLink="/login">¿Ya tienes cuenta? Inicia sesión</a>
+            </div>
+        </div>
+    </div>
+</div>

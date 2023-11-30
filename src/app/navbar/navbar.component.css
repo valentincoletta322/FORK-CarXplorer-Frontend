@@ -1,0 +1,20 @@
+.sidenav-container {
+    display: none; /* Ocultar el menú lateral por defecto */
+  }
+  
+  mat-sidenav {
+    width: 250px; /* Ancho del menú lateral (ajusta según tus necesidades) */
+  }
+  
+  /* Estilos para la barra de navegación normal */
+  mat-toolbar {
+    z-index: 100;
+    position: fixed;
+    background-color: #4769ff; /* Color de fondo de la barra de navegación */
+    color: white; /* Color del texto de la barra de navegación */
+    padding: 10px 20px; /* Ajusta el espaciado */
+  }
+
+  * {
+    font-family: 'Work Sans', sans-serif;
+  }

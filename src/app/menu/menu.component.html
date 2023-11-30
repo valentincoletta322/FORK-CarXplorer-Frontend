@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+
+<div class="filterzone">
+  <div class="filterhead" style="display: flex;">
+    <input type="text" placeholder="{{greeting}}" id="titleFilter" [(ngModel)]="titleFilter">
+    <mat-icon class="searchIcon" (click)="search()">search</mat-icon>
+  </div>
+  <label class="filtercheck">
+    Filtrar publicaciones <input type="checkbox" (click)="restartFilters()" [(ngModel)]="filterResults" name="filterResults">
+  </label>
+  <div class="filters" *ngIf="filterResults">
+    <label for="cityFilter">Barrio:</label>
+    <select id="address" name="address" [(ngModel)]="addrCity" placeholder="Barrio">
+      <option *ngFor="let neighborhood of neighborhoods" [value]="neighborhood">
+          {{ neighborhood }}
+      </option>
+      <option value="" disabled selected hidden>Cualquiera</option>
+    </select>
+    <label for="currencyFilter">Precio:</label>
+    <input type="number" placeholder="Desde" id="minPriceFilter" [(ngModel)]="minPriceFilter">
+    -
+    <input style="margin-left: 5px;"type="number" placeholder="Hasta" id="minPriceFilter" [(ngModel)]="maxPriceFilter">
+    <label for="currencyFilter">Moneda:</label>
+    <select id="currencyFilter" [(ngModel)]="currencyFilter">
+      <option value="">Cualquiera</option>
+      <option value="ARS">ARS</option>
+      <option value="USD">USD</option>
+    </select>
+  </div>
+</div>
+
+<div class="filterzone" id="error" *ngIf="statusSearch">
+  {{statusSearch}}
+</div>
+
+<div class="publicaciones-grid" *ngIf="!statusSearch">
+  <div class="publicacion-card" *ngFor="let publicacion of publicaciones.listings">
+    <div class="titulos">
+      <div class="photo-container" (click)="verDescripcion(publicacion)">
+        <img class="listingImg" src={{(publicaciones.URL_IMG)+(publicacion.listingPhoto)}} alt="Foto">
+      </div>
+        <h3 class="truncate-text">{{ publicacion.title }}</h3>
+    </div>
+    <div class="content" (click)="verDescripcion(publicacion)">
+      <p class="precio-grande"><strong>$</strong> {{ serviceFormatPrice(publicacion.price) }} {{ publicacion.currency }}</p>
+      <p [ngClass]="{'disponibilidad': true, 'Pausado': publicacion.state === 'Pausada'}" class="disponibilidad">{{ publicacion.state }}</p>
+      <p><strong></strong> {{ serviceTruncateText(publicacion.description, 29) }}</p>
+      <p>Publicado por <strong>{{ publicacion.author }}</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="filterzone" *ngIf="!statusSearch">
+  
+  <div style="margin-top: 15px; display: flex;">
+    <div class="pageElement" *ngIf="page > 1">
+      <mat-icon style="cursor: pointer;" (click)="cambiarPagina(page-1)">west</mat-icon>
+    </div>
+    <div style="cursor: pointer;" class="pageElement" *ngIf="page > 1" (click)="cambiarPagina(page-1)">
+        {{page-1}}
+    </div>
+    <div class="pageElement" id="selectedPage">
+      {{page}}
+    </div>
+    <div style="cursor: pointer;" class="pageElement" (click)="cambiarPagina(page+1)" *ngIf="!publicaciones.lastPage">
+      {{page+1}}
+    </div>
+    
+    <div class="pageElement" *ngIf="!publicaciones.lastPage">
+      <mat-icon style="cursor: pointer;" (click)="cambiarPagina(page+1)">east</mat-icon>
+    </div>
+
+  </div>
+</div>

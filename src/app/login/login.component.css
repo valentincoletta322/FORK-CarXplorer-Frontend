@@ -1,0 +1,140 @@
+body {
+    font-family: 'Overpass', sans-serif;
+    font-weight: normal;
+    font-size: 100%;
+    color: #ffffff;
+    
+    margin: 0;
+    background-color: #ffffff;
+}
+
+#contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin: 0;
+    padding: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+#central {
+    max-width: 320px;
+    width: 100%;
+}
+
+.titulo {
+    font-size: 250%;
+    color:#3056ff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.subtitulo {
+    font-size: 150%;
+    color:#3056ff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#login {
+    width: 100%;
+    padding: 50px 30px;
+    background-color: rgba(194, 192, 192, 0.192);
+    
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    
+    box-sizing: border-box;
+}
+
+#login input {
+    font-family: 'Overpass', sans-serif;
+    font-size: 110%;
+    background-color: #5555551c;
+    color: #131313;
+
+    display: block;
+    width: 100%;
+    height: 40px;
+    
+    margin-bottom: 10px;
+    padding: 5px 5px 5px 10px;
+    box-sizing: border-box;
+    
+    border: none;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-color: #000000;
+    transition: ease 0.3s;
+}
+
+#login input:hover {
+    background-color: #979797;
+
+}
+
+#login input::placeholder {
+    font-family: 'Overpass', sans-serif;
+    color: #000000c9;
+}
+
+#login button {
+    font-family: 'Overpass', sans-serif;
+    font-size: 110%;
+    color:#ffffff;
+    width: 100%;
+    height: 40px;
+    border: none;
+    
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    
+    background-color: #3056ff;
+    transition: ease 0.3s;
+    margin-top: 10px;
+}
+
+#login button:active {
+    transition: none;
+    -webkit-box-shadow: inset 5px 5px 10px #000000;
+       -moz-box-shadow: inset 5px 5px 10px #000000;
+            box-shadow: inset 0px 0px 10px #000000;
+     outline: none;
+  }
+
+#login button:hover {
+    background-color: #ccd9e7;
+    color:#000000;
+}
+
+.pie-form {
+    font-size: 90%;
+    text-align: center;    
+    margin-top: 15px;
+}
+
+.pie-form a {
+    display: block;
+    text-decoration: none;
+    color: #3056ff;
+    margin-bottom: 3px;
+}
+
+.pie-form a:hover {
+    color:#ca6896;
+}
+
+
+hr{
+    border-color: #ffffff3d;
+}

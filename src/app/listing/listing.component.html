@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+
+<div class="confirmZone" *ngIf="confirmarBorrar">
+  <div class="confirmDelete">
+    <mat-icon style="margin-left: 100%; cursor: pointer;" (click)="closeConfirmar()" >close</mat-icon>
+
+    <div style="display: block;">
+      <div style="margin-top: 2.5px;">
+        ¿Está seguro que desea borrar esta publicación?
+      </div>
+      <button (click)="confirmarBorrarPublicacion()" style="margin-top:10px; margin-left: 25%; background-color: rgb(163, 27, 27);" (click)="borrarPublicacion()">Borrar publicación</button>
+    </div>
+  </div>
+</div>
+
+<div class="bigContainer">
+  <div class="publicacion-detalle">
+    <img class="listingImg" src='{{(data.URL_IMG)+(publicacion.listingPhoto)}}' alt="Foto">
+    <div style="display: flex;">
+    </div>
+    <div style="display: flex;">
+      <h1 style="padding-top: 30px;"> {{ publicacion.title }}</h1>
+      <mat-icon class="iconEdit" *ngIf="esPropietario" (click)="toggleEditMode()">edit</mat-icon>
+      <mat-icon class="iconDelete" *ngIf="esPropietario" (click)="borrarPublicacion()">delete</mat-icon>
+    </div>
+    <p><strong>Precio:</strong> {{ publicacion.price }} {{ publicacion.currency }}</p>
+    <p><strong>Estado:</strong> {{ publicacion.state }}</p>
+    <p style="white-space: pre-line;">{{ publicacion.description }}</p>
+    <p>Publicado por <strong style="cursor: pointer;" routerLink="/profile/{{publicacion.author}}">{{ publicacion.author }}</strong></p>
+    <div style="margin-top:20px"*ngIf="modoEdicion">
+      <form (ngSubmit)="guardarEdicion()">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" [(ngModel)]="publicacion.title">
+  
+        <label for="price">Precio:</label>
+        <input type="text" id="price" name="price" [(ngModel)]="publicacion.price">
+  
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" [(ngModel)]="publicacion.description"></textarea>
+        <label for="state">Estado:</label>
+        <select id="state" name="state" [(ngModel)]="publicacion.state">
+          <option value="Disponible">Disponible</option>
+          <option value="Pausado">Pausado</option>
+        </select>
+        <div class="errorZone">
+          <div class="errorContent" *ngIf="statusEdit">
+            <mat-icon style="margin-left: 100%; cursor: pointer;" (click)="closeError()" >close</mat-icon>
+        
+            <div style="display: flex;">
+              <div>
+                <mat-icon class="errorIcon">error</mat-icon>
+              </div>
+              <div style="margin-top: 2.5px;">
+                Error: {{statusEdit}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="cancelButton" *ngIf="esPropietario" (click)="toggleEditMode()">Cancelar</button>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+  </div>
+
+  <div *ngIf="!esPropietario" class="mapnquery">
+    <div id="map" style="height: 380px; width: 500px; z-index: 1;"></div>
+    <div class="query-form">
+      <h3>Consultar por este vehículo</h3>
+      <form (ngSubmit)="publicarComentario()" #queryForm="ngForm">
+        <div class="form-group" *ngIf="!consultaEnviada">
+          <label for="query">Enviale tu consulta al vendedor:</label>
+          <textarea id="query" name="query" [(ngModel)]="query" required></textarea>
+        </div>
+        <div class="form-group">
+          <button *ngIf="!consultaEnviada" type="submit">Enviar consulta</button>
+          <h4 *ngIf="consultaEnviada" style="margin-bottom: 150px;">Tu consulta fue enviada!</h4>
+        </div>
+      </form>
+      <h3>Contacto:</h3>
+      <div style="display: flex;"><mat-icon style="padding-right: 5px;">phone</mat-icon><p>{{profileData.phone}}</p></div>
+      <div style="display: flex;"><mat-icon style="padding-right: 5px;">email</mat-icon><p>{{profileData.email}}</p></div>
+    </div>
+  </div>
+
+<div class="query-comments">
+  <h3>Comentarios</h3>
+  <ul>
+    <li *ngFor="let comment of allQueries">
+      <strong>{{ comment.author }} </strong> - {{ comment.datetime | date:'medium' }} <br>
+      {{ comment.content }}<br>
+      <div *ngIf="comment.wasAnswered" style="display: flex; margin-left:10px;"> ∟  <div style="margin-top: 4px; margin-left: 3px;"> {{ comment.answer }}</div> <br></div>
+      <button *ngIf="esPropietario && !comment.wasAnswered" (click)="mostrarFormularioRespuesta(comment)">Responder</button>
+      <div *ngIf="comment.mostrandoFormularioRespuesta">
+        <br>
+        <textarea style="resize: none;" [(ngModel)]="comment.respuesta" rows="3"></textarea>
+        <br>
+        <button (click)="responderComentario(comment)">Enviar Respuesta</button>
+      </div>
+    </li>
+  </ul>
+</div>
